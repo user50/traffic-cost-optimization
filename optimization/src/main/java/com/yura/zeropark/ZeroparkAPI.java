@@ -4,6 +4,8 @@ import com.yura.http.HttpService;
 import com.yura.zeropark.model.Campaign;
 import com.yura.zeropark.model.Target;
 import org.apache.http.Header;
+import org.apache.http.client.utils.URIBuilder;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.IOException;
 import java.util.List;
@@ -19,8 +21,13 @@ public class ZeroparkAPI {
     }
 
     public List<Campaign> getCampaigns(String interval){
+
+        URIBuilder builder = new URIBuilder();
+        builder.setPath("/api/stats/campaign/all")
+                .setParameter("interval", interval);
+        
         try {
-            return httpService.execute(new GetAllCompanies(cookies, interval), new CompaniesExtractor());
+            return httpService.execute(new ZeroparkGetRequest(builder, cookies), new CompaniesExtractor());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -28,8 +35,12 @@ public class ZeroparkAPI {
 
     public List<Target> getTargets(String campaignId, String interval )
     {
+        URIBuilder builder = new URIBuilder();
+        builder.setPath("/api/stats/campaign/" + campaignId +"/targets")
+                .setParameter("interval", interval);
+
         try {
-            return httpService.execute(new GetTargetsForCampaign(cookies, campaignId, interval), new TargetsResponseHandler());
+            return httpService.execute(new ZeroparkGetRequest(builder, cookies), new TargetsResponseHandler());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -37,8 +48,33 @@ public class ZeroparkAPI {
 
     public void setTargetBid(String campaignId, String targetId, double bid)
     {
+        URIBuilder builder = new URIBuilder();
+        builder.setPath("/api/campaign/"+campaignId+"/target/bid")
+                .setParameter("campaignId", campaignId)
+                .setParameter("hash", targetId)
+                .setParameter("bid", String.valueOf(bid));
+
         try {
-            httpService.execute(new SetTargetsBid(cookies, campaignId, targetId, bid), httpResponse -> null);
+            httpService.execute(new ZeroparkPostRequest(builder, cookies), httpResponse -> null);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void pauseTarget(String campaignId, String targetHash)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void addTarget2Campaign(String campaignId, String target)
+    {
+        URIBuilder builder = new URIBuilder();
+        builder.setPath("/api/campaign/"+campaignId+"/target/add")
+                .setParameter("campaignId", campaignId)
+                .setParameter("hash", target);
+
+        try {
+            httpService.execute(new ZeroparkPostRequest(builder, cookies), resp -> null);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

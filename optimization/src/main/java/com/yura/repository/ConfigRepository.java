@@ -1,4 +1,4 @@
-package com.yura;
+package com.yura.repository;
 
 import java.util.List;
 

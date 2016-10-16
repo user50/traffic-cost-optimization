@@ -1,5 +1,6 @@
 package com.yura;
 
+import com.yura.repository.ConfigRepository;
 import com.yura.zeropark.ZeroparkAPI;
 import com.yura.zeropark.model.Target;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
@@ -26,10 +27,22 @@ public class TargetOptimizationService {
         for (CampaignConf campaignConf : withOptitmization) {
             List<Target> targets = zeroparkAPI.getTargets(campaignConf.getCampaingId(), LAST_7_DAYS_INTERVAL);
             for (Target target : targets) {
-                throw new NotImplementedException();
+
+                if (target.getStats().getPayout() == 0) {
+                    zeroparkAPI.pauseTarget(campaignConf.getId(), target.getTarget());
+                    continue;
+                }
+
+                double maxBid = target.getStats().getPayout()/target.getStats().getRedirects() * campaignConf.getPrecentage();
+
+
+
+
+
             }
         }
 
     }
+
 
 }

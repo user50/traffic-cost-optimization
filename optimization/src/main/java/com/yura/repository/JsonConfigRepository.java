@@ -1,4 +1,4 @@
-package com.yura;
+package com.yura.repository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;

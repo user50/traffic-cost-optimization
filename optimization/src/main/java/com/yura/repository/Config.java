@@ -1,4 +1,4 @@
-package com.yura;
+package com.yura.repository;
 
 public interface Config {
 

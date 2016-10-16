@@ -1,5 +1,6 @@
 package com.yura.zeropark;
 
+import com.yura.zeropark.ZeroparkHttpsRequest;
 import org.apache.http.Header;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
@@ -7,28 +8,18 @@ import org.apache.http.client.utils.URIBuilder;
 
 import java.net.URISyntaxException;
 
-class SetTargetsBid extends ZeroparkHttpsRequest {
+class ZeroparkPostRequest extends ZeroparkHttpsRequest {
 
+    private URIBuilder builder;
     private Header[] cookies;
-    private String campaignId;
-    private String target;
-    private double bid;
 
-    public SetTargetsBid(Header[] cookies, String campaignId, String target, double bid) {
+    ZeroparkPostRequest(URIBuilder builder, Header[] cookies) {
+        this.builder = builder;
         this.cookies = cookies;
-        this.campaignId = campaignId;
-        this.target = target;
-        this.bid = bid;
     }
 
     @Override
     public HttpRequestBase getRequest() {
-        URIBuilder builder = new URIBuilder();
-        builder.setPath("/api/campaign/"+campaignId+"/target/bid")
-                .setParameter("campaignId", campaignId)
-                .setParameter("hash", target)
-                .setParameter("bid", String.valueOf(bid));
-
         try {
             HttpPost post = new HttpPost(builder.build());
             post.setHeaders(cookies);

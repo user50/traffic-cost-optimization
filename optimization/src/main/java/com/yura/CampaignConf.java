@@ -1,6 +1,8 @@
 package com.yura;
 
-public class CampaignConf implements Config{
+import com.yura.repository.Config;
+
+public class CampaignConf implements Config {
 
     private String id;
 
