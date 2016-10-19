@@ -29,7 +29,7 @@ public class TargetOptimizationService {
             for (Target target : targets) {
 
                 if (target.getStats().getPayout() == 0) {
-                    zeroparkAPI.pauseTarget(campaignConf.getId(), target.getTarget());
+                    zeroparkAPI.pauseTarget(campaignConf.getId(), target.getId());
                     continue;
                 }
 

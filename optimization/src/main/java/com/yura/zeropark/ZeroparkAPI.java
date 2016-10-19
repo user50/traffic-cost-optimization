@@ -25,7 +25,7 @@ public class ZeroparkAPI {
         URIBuilder builder = new URIBuilder();
         builder.setPath("/api/stats/campaign/all")
                 .setParameter("interval", interval);
-        
+
         try {
             return httpService.execute(new ZeroparkGetRequest(builder, cookies), new CompaniesExtractor());
         } catch (IOException e) {
@@ -78,6 +78,21 @@ public class ZeroparkAPI {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void setCampaignBid(String campaignId, double bid)
+    {
+        URIBuilder builder = new URIBuilder();
+        builder.setPath("/api/campaign/"+campaignId+"/bid")
+                .setParameter("campaignId", campaignId)
+                .setParameter("bid", String.valueOf(bid));
+
+        try {
+            httpService.execute(new ZeroparkPostRequest(builder, cookies), resp -> null);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 
