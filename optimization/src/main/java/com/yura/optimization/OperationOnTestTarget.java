@@ -1,6 +1,5 @@
 package com.yura.optimization;
 
-import com.yura.zeropark.HttpZeroparkAPI;
 import com.yura.zeropark.ZeroparkApi;
 import com.yura.zeropark.model.Target;
 

@@ -1,7 +1,6 @@
 package com.yura.optimization;
 
 import com.yura.zeropark.ZeroparkApi;
-import com.yura.zeropark.model.Target;
 
 class DisableWithZeroPayout implements TargetOperation {
 
