@@ -6,17 +6,33 @@ public class CampaignConf implements Config {
 
     private String id;
 
-    private String campaingId;
+    private String campaignId;
+    private String campaignName;
     private boolean autoOptimization;
     private int maxRedirects;
-    private double precentage;
+    private double percentage;
+    private String testCampaignId;
+    private int maxTestRedirect;
 
-    public String getCampaingId() {
-        return campaingId;
+    public CampaignConf() {
     }
 
-    public void setCampaingId(String campaingId) {
-        this.campaingId = campaingId;
+    public CampaignConf(String campaignId, String campaignName, boolean autoOptimization, int maxRedirects, double percentage, String testCampaignId, int maxTestRedirect) {
+        this.campaignId = campaignId;
+        this.campaignName = campaignName;
+        this.autoOptimization = autoOptimization;
+        this.maxRedirects = maxRedirects;
+        this.percentage = percentage;
+        this.testCampaignId = testCampaignId;
+        this.maxTestRedirect = maxTestRedirect;
+    }
+
+    public String getCampaignId() {
+        return campaignId;
+    }
+
+    public void setCampaignId(String campaignId) {
+        this.campaignId = campaignId;
     }
 
     public boolean isAutoOptimization() {
@@ -35,12 +51,36 @@ public class CampaignConf implements Config {
         this.maxRedirects = maxRedirects;
     }
 
-    public double getPrecentage() {
-        return precentage;
+    public double getPercentage() {
+        return percentage;
     }
 
-    public void setPrecentage(double precentage) {
-        this.precentage = precentage;
+    public void setPercentage(double percentage) {
+        this.percentage = percentage;
+    }
+
+    public String getTestCampaignId() {
+        return testCampaignId;
+    }
+
+    public void setTestCampaignId(String testCampaignId) {
+        this.testCampaignId = testCampaignId;
+    }
+
+    public int getMaxTestRedirect() {
+        return maxTestRedirect;
+    }
+
+    public void setMaxTestRedirect(int maxTestRedirect) {
+        this.maxTestRedirect = maxTestRedirect;
+    }
+
+    public String getCampaignName() {
+        return campaignName;
+    }
+
+    public void setCampaignName(String campaignName) {
+        this.campaignName = campaignName;
     }
 
     @Override
@@ -52,4 +92,6 @@ public class CampaignConf implements Config {
     public void setId(String id) {
         this.id = id;
     }
+
+
 }

@@ -10,6 +10,7 @@ public class Target {
     private Bid bid;
     private BidPosition bidPosition;
     private TargetStats stats;
+    private State state;
 
     public String getId() {
         return id;
@@ -49,5 +50,13 @@ public class Target {
 
     public void setStats(TargetStats stats) {
         this.stats = stats;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
     }
 }
