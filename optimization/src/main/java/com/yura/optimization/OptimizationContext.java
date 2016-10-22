@@ -7,21 +7,15 @@ import com.yura.zeropark.model.Target;
 public class OptimizationContext {
 
     private CampaignConf conf;
-    private Campaign campaign;
     private Target target;
 
-    public OptimizationContext(CampaignConf conf, Campaign campaign, Target target) {
+    OptimizationContext(CampaignConf conf, Target target) {
         this.conf = conf;
-        this.campaign = campaign;
         this.target = target;
     }
 
     public CampaignConf getConf() {
         return conf;
-    }
-
-    public Campaign getCampaign() {
-        return campaign;
     }
 
     public Target getTarget() {

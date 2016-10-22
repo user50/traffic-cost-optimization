@@ -8,16 +8,23 @@ import java.io.IOException;
 
 public class ZeroparkAPIProvider {
 
-    public ZeroparkAPI get()
+    private static ZeroparkApi INSTANCE;
+
+    public ZeroparkApi get()
     {
-        HttpService httpService = new HttpService(HttpClients.createDefault());
 
-        try {
-            Header[] cookies = httpService.execute(new SignInRequest(), new CookieExtractor());
+        if (INSTANCE == null) {
+            HttpService httpService = new HttpService(HttpClients.createDefault());
 
-            return new ZeroparkAPI(cookies, httpService);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            try {
+                Header[] cookies = httpService.execute(new SignInRequest(), new CookieExtractor());
+
+                INSTANCE = new ZeroparkApiLogging(new HttpZeroparkAPI(cookies, httpService));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
+
+        return INSTANCE;
     }
 }

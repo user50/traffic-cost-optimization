@@ -1,5 +1,8 @@
 package com.yura.zeropark.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SetTargetBidResponse {
 
     private String bidPosition;
