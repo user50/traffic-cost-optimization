@@ -28,9 +28,11 @@ public class TargetOptimizationService {
         List<Target> targets = zeroparkAPI.getTargets(conf.getCampaignId(), Intervals.LAST_7_DAYS.name());
         targets.forEach(target -> strategy.accept(new OptimizationContext(conf, target)));
 
+        if (conf.getTestCampaignId().isEmpty())
+            return;
+
         List<Target> testTargets = zeroparkAPI.getTargets(conf.getTestCampaignId(), Intervals.LAST_7_DAYS.name());
         testTargets.forEach(target -> operationOnTestTarget.accept(new OptimizationContext(conf, target)));
-
     }
 
 

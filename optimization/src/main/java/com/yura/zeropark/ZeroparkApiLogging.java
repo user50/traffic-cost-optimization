@@ -33,7 +33,7 @@ class ZeroparkApiLogging implements ZeroparkApi {
     @Override
     public SetTargetBidResponse setTargetBid(String campaignId, String targetId, double bid) {
         SetTargetBidResponse setTargetBidResponse = zeroparkApi.setTargetBid(campaignId, targetId, bid);
-        LOGGER.log("setTargetBid for campaignId " + campaignId + ", targetId " + targetId + ", targetId " + targetId);
+        LOGGER.log("setTargetBid for campaignId " + campaignId + ", targetId " + targetId + ", bid " + bid);
         return setTargetBidResponse;
     }
 

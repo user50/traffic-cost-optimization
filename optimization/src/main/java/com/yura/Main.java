@@ -10,7 +10,6 @@ public class Main {
         CompaignConfigManager manager = new ConfigManagerProvider().get();
         TargetOptimizationService service = new TargetOptimizationServiceProvider().get();
 
-
         for (CampaignConf conf : manager.get()) {
             service.optimize(conf);
         }

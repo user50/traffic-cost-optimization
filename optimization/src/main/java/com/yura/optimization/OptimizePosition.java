@@ -1,6 +1,6 @@
 package com.yura.optimization;
 
-import com.yura.zeropark.HttpZeroparkAPI;
+import com.yura.logging.Logger;
 import com.yura.zeropark.ZeroparkApi;
 import com.yura.zeropark.model.BidPosition;
 import com.yura.zeropark.model.TargetStats;
@@ -17,14 +17,12 @@ class OptimizePosition implements TargetOperation {
 
     @Override
     public void accept(OptimizationContext context) {
-        BidPosition bidPosition = context.getTarget().getBidPosition();
-
-        if  (!bidPosition.getPosition().equals("1")  && context.getTarget().getState().getState().equals("ACTIVE"))
-            return;
-
         TargetStats stats = context.getTarget().getStats();
 
         double maxBid = stats.getPayout()/ stats.getRedirects() * (1 - context.getConf().getPercentage()/100);
+
+        if (maxBid == 0)
+            return;
 
         String campaignId = context.getConf().getCampaignId();
         String targetHash = context.getTarget().getTarget();

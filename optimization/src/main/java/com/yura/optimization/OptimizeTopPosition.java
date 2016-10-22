@@ -1,6 +1,5 @@
 package com.yura.optimization;
 
-import com.yura.zeropark.HttpZeroparkAPI;
 import com.yura.zeropark.ZeroparkApi;
 import com.yura.zeropark.model.BidPosition;
 
@@ -16,13 +15,8 @@ class OptimizeTopPosition implements TargetOperation {
 
     @Override
     public void accept(OptimizationContext context) {
-        BidPosition bidPosition = context.getTarget().getBidPosition();
-
-        if (!bidPosition.getPosition().equals("1") && context.getTarget().getState().getState().equals("ACTIVE"))
-            return;
-
         double ourBid = context.getTarget().getBid().getValue();
-        double topBid = bidPosition.getTopBid();
+        double topBid = context.getTarget().getBidPosition().getTopBid();
 
         if (ourBid - topBid > minBidChange  )
             zeroparkAPI.setTargetBid(context.getConf().getCampaignId(), context.getTarget().getTarget(), topBid + minBidChange);
