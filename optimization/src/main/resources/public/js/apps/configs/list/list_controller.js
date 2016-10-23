@@ -29,7 +29,7 @@ define(["jquery", "app", "apps/configs/list/list_view"], function($, ConfigManag
 
                                 var testCandidates = [];
                                 configs.each(function(config) {
-                                    if (!config.get("autoOptimization"))
+                                    if (!config.get("autoOptimization") && config.id != model.id)
                                         testCandidates.push(config);
                                 });
 
