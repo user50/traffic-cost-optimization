@@ -11,17 +11,16 @@ import org.springframework.scheduling.annotation.Scheduled;
  */
 public class OptimizationScheduler {
 
-    private ConfigRepository<CampaignConf> repository;
+    private CompaignConfigManager manager;
+    private TargetOptimizationService service;
 
-    public OptimizationScheduler(ConfigRepository<CampaignConf> repository) {
-        this.repository = repository;
+    public OptimizationScheduler(CompaignConfigManager manager, TargetOptimizationService service) {
+        this.manager = manager;
+        this.service = service;
     }
 
-    @Scheduled(cron = "0 0/15 * * * ?")
+    @Scheduled(cron = "0 0/1 * * * ?")
     public void execute(){
-        CompaignConfigManager manager = new CompaignConfigManager(repository, new ZeroparkAPIProvider().get());
-        TargetOptimizationService service = new TargetOptimizationServiceProvider().get();
-
         manager.get().forEach(service::optimize);
     }
 }
