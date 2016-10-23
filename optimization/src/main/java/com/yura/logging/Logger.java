@@ -4,6 +4,6 @@ public enum  Logger {
     LOGGER;
 
     public void log(String message){
-        System.out.println(message);
+        java.util.logging.Logger.getAnonymousLogger().info(message);
     }
 }

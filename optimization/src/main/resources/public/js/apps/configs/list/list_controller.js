@@ -19,15 +19,23 @@ define(["jquery", "app", "apps/configs/list/list_view"], function($, ConfigManag
                         });
 
                         configListView.on("childview:config:show", function(childView, args){
-                            ConfigManager.trigger("config:show", args.model.get("id"));
+                            //ConfigManager.trigger("config:show", args.model.get("id"));
                         });
 
 
                         configListView.on("childview:config:edit", function(childView, args) {
                             require(["apps/configs/edit/edit_view"], function(EditView) {
                                 var model = args.model;
+
+                                var testCandidates = [];
+                                configs.each(function(config) {
+                                    if (!config.get("autoOptimization"))
+                                        testCandidates.push(config);
+                                });
+
                                 var view = new EditView({
-                                    model: model
+                                    model: model,
+                                    testCandidates: testCandidates
                                 });
                                 view.on("form:submit", function (data) {
                                     if (model.save(data)) {

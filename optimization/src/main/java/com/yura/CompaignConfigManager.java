@@ -34,7 +34,7 @@ public class CompaignConfigManager {
         campaigns.stream()
                 .filter(campaign -> !confCompaigns.contains(campaign.getId()))
                 .forEach(campaign -> {
-                    repository.create(new CampaignConf(campaign.getId(), campaign.getName(), false, 0, 0, "", 0));
+                    repository.create(new CampaignConf(campaign.getId(), campaign.getName(), false, 0, 0, "", "", 0));
                 });
 
         return repository.list();

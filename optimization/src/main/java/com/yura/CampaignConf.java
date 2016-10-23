@@ -12,18 +12,21 @@ public class CampaignConf implements Config {
     private int maxRedirects;
     private double percentage;
     private String testCampaignId;
+    private String testCampaignName;
     private int maxTestRedirect;
 
     public CampaignConf() {
     }
 
-    public CampaignConf(String campaignId, String campaignName, boolean autoOptimization, int maxRedirects, double percentage, String testCampaignId, int maxTestRedirect) {
+    public CampaignConf(String campaignId, String campaignName, boolean autoOptimization, int maxRedirects,
+                        double percentage, String testCampaignId, String testCampaignName, int maxTestRedirect) {
         this.campaignId = campaignId;
         this.campaignName = campaignName;
         this.autoOptimization = autoOptimization;
         this.maxRedirects = maxRedirects;
         this.percentage = percentage;
         this.testCampaignId = testCampaignId;
+        this.testCampaignName = testCampaignName;
         this.maxTestRedirect = maxTestRedirect;
     }
 
@@ -81,6 +84,14 @@ public class CampaignConf implements Config {
 
     public void setCampaignName(String campaignName) {
         this.campaignName = campaignName;
+    }
+
+    public String getTestCampaignName() {
+        return testCampaignName;
+    }
+
+    public void setTestCampaignName(String testCampaignName) {
+        this.testCampaignName = testCampaignName;
     }
 
     @Override

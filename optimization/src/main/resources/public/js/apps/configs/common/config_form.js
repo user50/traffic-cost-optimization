@@ -25,6 +25,12 @@ function($, _, ConfigManager, MissingConfigView, formTpl){
                 e.preventDefault();
 
                 var data = Backbone.Syphon.serialize(this);
+                data.testCampaignId = this.$el.find("option:selected").val();
+
+                if (data.testCampaignId && data.testCampaignId.length > 0)
+                    data.testCampaignName = this.$el.find("option:selected").text();
+                else
+                    data.testCampaignName = "";
 
                 this.trigger("form:submit", data);
             },

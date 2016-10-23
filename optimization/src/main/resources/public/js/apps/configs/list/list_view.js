@@ -10,7 +10,7 @@ function($, Marionette, ConfigManager, listTpl, listItemTpl, listLayoutTpl, list
 
             triggers: {
                 "click a.js-edit" : "config:edit",
-                "click a.js-show" : "config:show"
+                "change input" : "config:show"
             },
 
             flash: function(cssClass){

@@ -4,11 +4,15 @@
     </a>
 </td>
 <td class="col-md-1"><% if (autoOptimization) { %>
-        <input type="checkbox" checked>
+        <input type="checkbox" checked disabled>
     <% } else { %>
-        <input type="checkbox">
+        <input type="checkbox" disabled>
     <% } %>
 </td>
-<td class="col-md-9"><%- campaingId %></td>
-<td class="col-md-1"> todo </td>
+<td class="col-md-4"><%= campaignName %></td>
+<td class="col-md-1"><%= maxRedirects %></td>
+<td class="col-md-1"><%= maxTestRedirect %></td>
+<td class="col-md-1"><%= percentage %></td>
+<td class="col-md-2"><%= testCampaignName %></td>
+<td class="col-md-1">  </td>
 

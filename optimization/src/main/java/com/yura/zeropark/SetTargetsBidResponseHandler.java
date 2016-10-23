@@ -5,7 +5,6 @@ import com.yura.http.HttpResponseHandler;
 import com.yura.zeropark.model.SetTargetBidResponse;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.util.EntityUtils;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.IOException;
 

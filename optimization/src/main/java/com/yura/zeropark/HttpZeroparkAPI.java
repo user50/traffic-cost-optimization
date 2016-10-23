@@ -6,7 +6,6 @@ import com.yura.zeropark.model.SetTargetBidResponse;
 import com.yura.zeropark.model.Target;
 import org.apache.http.Header;
 import org.apache.http.client.utils.URIBuilder;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.IOException;
 import java.util.List;
