@@ -1,7 +1,15 @@
 package com.yura.optimization;
 
 import com.yura.CampaignConf;
+import com.yura.zeropark.ZeroparkAPI;
+import com.yura.zeropark.ZeroparkAPIProvider;
+import com.yura.zeropark.model.Campaign;
+import com.yura.zeropark.model.Intervals;
+import com.yura.zeropark.model.Target;
 import org.junit.Test;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class TargetOptimizationServiceProviderTest {
     @Test
@@ -19,4 +27,42 @@ public class TargetOptimizationServiceProviderTest {
         service.optimize(conf);
     }
 
+    @Test
+    public void name() throws Exception {
+
+        ZeroparkAPI api = new ZeroparkAPIProvider().get();
+
+        List<Campaign> campaigns = api.getCampaigns(Intervals.LAST_7_DAYS.name());
+
+        Campaign campaign = campaigns.stream()
+                .filter(c ->  c.getName().equals("AV-PopUp-Win+iOS+other-3G-White-KE"))
+                .collect(Collectors.toList()).get(0);
+
+        Target target = api.getTargets(campaign.getId(), Intervals.LAST_7_DAYS.name()).stream()
+                .filter(t -> t.getTarget().equals("lima-its-4KjxlCoj"))
+                .collect(Collectors.toList())
+                .get(0);
+
+        String position = target.getBidPosition().getPosition();
+
+        api.setTargetBid(campaign.getId(), target.getTarget(), 0.001);
+
+        long start = System.currentTimeMillis();
+        while (true)
+        {
+
+            Thread.sleep(1000);
+            target = api.getTargets(campaign.getId(), Intervals.LAST_7_DAYS.name()).stream()
+                    .filter(t -> t.getTarget().equals("lima-its-4KjxlCoj"))
+                    .collect(Collectors.toList())
+                    .get(0);
+
+            if (!target.getBidPosition().getPosition().equals(position)) {
+                System.out.println((System.currentTimeMillis() - start));
+                return;
+            }
+        }
+
+
+    }
 }
