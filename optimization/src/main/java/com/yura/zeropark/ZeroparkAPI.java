@@ -6,7 +6,7 @@ import com.yura.zeropark.model.Target;
 
 import java.util.List;
 
-public interface ZeroparkApi {
+public interface ZeroparkAPI {
 
     List<Campaign> getCampaigns(String interval);
 

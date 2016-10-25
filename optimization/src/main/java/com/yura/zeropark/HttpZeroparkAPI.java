@@ -10,7 +10,7 @@ import org.apache.http.client.utils.URIBuilder;
 import java.io.IOException;
 import java.util.List;
 
-class HttpZeroparkAPI implements ZeroparkApi{
+class HttpZeroparkAPI implements ZeroparkAPI {
 
     private Header[] cookies;
     private HttpService httpService;

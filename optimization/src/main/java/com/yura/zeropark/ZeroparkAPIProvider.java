@@ -8,9 +8,9 @@ import java.io.IOException;
 
 public class ZeroparkAPIProvider {
 
-    private static ZeroparkApi INSTANCE;
+    private static ZeroparkAPI INSTANCE;
 
-    public ZeroparkApi get()
+    public ZeroparkAPI get()
     {
 
         if (INSTANCE == null) {

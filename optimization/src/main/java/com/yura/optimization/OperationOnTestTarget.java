@@ -1,13 +1,13 @@
 package com.yura.optimization;
 
-import com.yura.zeropark.ZeroparkApi;
+import com.yura.zeropark.ZeroparkAPI;
 import com.yura.zeropark.model.Target;
 
 class OperationOnTestTarget implements TargetOperation {
 
-    private ZeroparkApi zeroparkAPI;
+    private ZeroparkAPI zeroparkAPI;
 
-    OperationOnTestTarget(ZeroparkApi zeroparkAPI) {
+    OperationOnTestTarget(ZeroparkAPI zeroparkAPI) {
         this.zeroparkAPI = zeroparkAPI;
     }
 

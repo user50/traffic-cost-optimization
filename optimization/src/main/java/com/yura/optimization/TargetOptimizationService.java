@@ -2,7 +2,7 @@ package com.yura.optimization;
 
 import com.yura.CampaignConf;
 import com.yura.zeropark.model.Intervals;
-import com.yura.zeropark.ZeroparkApi;
+import com.yura.zeropark.ZeroparkAPI;
 import com.yura.zeropark.model.Target;
 
 import java.util.List;
@@ -10,11 +10,11 @@ import java.util.List;
 public class TargetOptimizationService {
 
 
-    private ZeroparkApi zeroparkAPI;
+    private ZeroparkAPI zeroparkAPI;
     private TargetOperation strategy;
     private TargetOperation operationOnTestTarget;
 
-    public TargetOptimizationService(ZeroparkApi zeroparkAPI, TargetOperation strategy, TargetOperation operationOnTestTarget) {
+    public TargetOptimizationService(ZeroparkAPI zeroparkAPI, TargetOperation strategy, TargetOperation operationOnTestTarget) {
         this.zeroparkAPI = zeroparkAPI;
         this.strategy = strategy;
         this.operationOnTestTarget = operationOnTestTarget;

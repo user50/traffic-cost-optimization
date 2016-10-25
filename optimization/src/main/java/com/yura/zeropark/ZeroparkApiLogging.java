@@ -8,11 +8,11 @@ import java.util.List;
 
 import static com.yura.logging.Logger.*;
 
-class ZeroparkApiLogging implements ZeroparkApi {
+class ZeroparkApiLogging implements ZeroparkAPI {
 
-    private ZeroparkApi zeroparkApi;
+    private ZeroparkAPI zeroparkApi;
 
-    public ZeroparkApiLogging(ZeroparkApi zeroparkApi) {
+    public ZeroparkApiLogging(ZeroparkAPI zeroparkApi) {
         this.zeroparkApi = zeroparkApi;
     }
 

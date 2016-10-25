@@ -10,9 +10,11 @@ public class TargetOptimizationServiceProviderTest {
 
         CampaignConf conf = new CampaignConf();
         conf.setAutoOptimization(true);
-        conf.setCampaignId("a881bfc0-6422-11e6-9fa4-0ea7743a2ad5");
-        conf.setMaxRedirects(100);
-        conf.setPercentage(0.5);
+        conf.setCampaignId("6e85b900-641f-11e6-9fa4-0ea7743a2ad5");
+        conf.setMaxRedirects(300);
+        conf.setMaxTestRedirect(300);
+        conf.setPercentage(50);
+        conf.setTestCampaignId("6f4b4380-5b7a-11e6-ae96-0e6b810b9917");
 
         service.optimize(conf);
     }

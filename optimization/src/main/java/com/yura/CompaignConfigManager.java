@@ -2,7 +2,7 @@ package com.yura;
 
 import com.yura.repository.ConfigRepository;
 import com.yura.zeropark.model.Intervals;
-import com.yura.zeropark.ZeroparkApi;
+import com.yura.zeropark.ZeroparkAPI;
 import com.yura.zeropark.model.Campaign;
 
 import java.util.List;
@@ -11,9 +11,9 @@ import java.util.stream.Collectors;
 
 public class CompaignConfigManager {
     private ConfigRepository<CampaignConf> repository;
-    private ZeroparkApi zeroparkApi;
+    private ZeroparkAPI zeroparkApi;
 
-    public CompaignConfigManager(ConfigRepository<CampaignConf> repository, ZeroparkApi zeroparkApi) {
+    public CompaignConfigManager(ConfigRepository<CampaignConf> repository, ZeroparkAPI zeroparkApi) {
         this.repository = repository;
         this.zeroparkApi = zeroparkApi;
     }
