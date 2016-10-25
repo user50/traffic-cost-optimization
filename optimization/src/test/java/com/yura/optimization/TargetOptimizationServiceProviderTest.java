@@ -35,30 +35,32 @@ public class TargetOptimizationServiceProviderTest {
         List<Campaign> campaigns = api.getCampaigns(Intervals.LAST_7_DAYS.name());
 
         Campaign campaign = campaigns.stream()
-                .filter(c ->  c.getName().equals("AV-PopUp-Win+iOS+other-3G-White-KE"))
+                .filter(c ->  c.getName().equals("AV-Domain-3G-White-KE"))
                 .collect(Collectors.toList()).get(0);
 
         Target target = api.getTargets(campaign.getId(), Intervals.LAST_7_DAYS.name()).stream()
-                .filter(t -> t.getTarget().equals("lima-its-4KjxlCoj"))
+                .filter(t -> t.getTarget().equals("uniform-wan-qaeMDnId"))
                 .collect(Collectors.toList())
                 .get(0);
 
         String position = target.getBidPosition().getPosition();
 
-        api.setTargetBid(campaign.getId(), target.getTarget(), 0.001);
+        String responsePosition = api.setTargetBid(campaign.getId(), target.getTarget(), 0.011).getBidPosition();
 
+        int iteration = 0;
         long start = System.currentTimeMillis();
         while (true)
         {
 
-            Thread.sleep(1000);
+            Thread.sleep(200);
             target = api.getTargets(campaign.getId(), Intervals.LAST_7_DAYS.name()).stream()
-                    .filter(t -> t.getTarget().equals("lima-its-4KjxlCoj"))
+                    .filter(t -> t.getTarget().equals("uniform-wan-qaeMDnId"))
                     .collect(Collectors.toList())
                     .get(0);
 
+            iteration++;
             if (!target.getBidPosition().getPosition().equals(position)) {
-                System.out.println((System.currentTimeMillis() - start));
+                System.out.println((System.currentTimeMillis() - start)+" iteration "+iteration);
                 return;
             }
         }
