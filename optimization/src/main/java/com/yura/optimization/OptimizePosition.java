@@ -5,9 +5,11 @@ import com.yura.optimization.predicates.TargetActive;
 import com.yura.optimization.predicates.TopPositionIsPossible;
 import com.yura.optimization.predicates.ZeroPayout;
 import com.yura.zeropark.ZeroparkAPI;
+import com.yura.zeropark.model.Intervals;
 import com.yura.zeropark.model.TargetStats;
 
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 class OptimizePosition implements TargetOperation {
 
@@ -30,6 +32,8 @@ class OptimizePosition implements TargetOperation {
         if (!predicate.test(context))
             return;
 
+        Logger.LOGGER.log("the case is recognized as "+getClass().getSimpleName());
+
         TargetStats stats = context.getTarget().getStats();
 
         double maxBid = stats.getPayout()/ stats.getRedirects() * (1 - context.getConf().getPercentage()/100);
@@ -39,7 +43,9 @@ class OptimizePosition implements TargetOperation {
 
         String campaignId = context.getConf().getCampaignId();
         String targetHash = context.getTarget().getTarget();
-        String maxPosition = zeroparkAPI.setTargetBid(campaignId, targetHash, maxBid).getBidPosition();
+
+        zeroparkAPI.setTargetBid(campaignId, targetHash, maxBid).getBidPosition();
+        String maxPosition = getTargetPosition(campaignId, targetHash);
 
         Logger.LOGGER.log(" maximal position for target "+context.getTarget().getTarget()+" is "+maxPosition+"; maximal bid "+maxBid);
 
@@ -50,8 +56,17 @@ class OptimizePosition implements TargetOperation {
 
         do {
             optimalBid *= 1-minRelativeBidChange;
-        }while (zeroparkAPI.setTargetBid(campaignId, targetHash, optimalBid).getBidPosition().equals(maxPosition));
+            zeroparkAPI.setTargetBid(campaignId, targetHash, optimalBid);
+        }while (getTargetPosition(campaignId, targetHash).equals(maxPosition));
 
-        zeroparkAPI.setTargetBid(campaignId, targetHash, optimalBid + minRelativeBidChange);
+        zeroparkAPI.setTargetBid(campaignId, targetHash, optimalBid * (1+minRelativeBidChange));
+    }
+
+    private String getTargetPosition(String campaignId, String target)
+    {
+        return zeroparkAPI.getTargets(campaignId, Intervals.LAST_7_DAYS.name()).stream()
+                .filter(t -> t.getTarget().equals(target))
+                .collect(Collectors.toList())
+                .get(0).getBidPosition().getPosition();
     }
 }

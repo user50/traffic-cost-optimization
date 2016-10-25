@@ -9,7 +9,7 @@ import com.yura.zeropark.ZeroparkAPIProvider;
 public class ConfigManagerProvider {
 
     public CompaignConfigManager get(){
-        ConfigRepository<CampaignConf> repository = new JsonConfigRepository<>("config.json", CampaignConf.class, new ObjectMapper());
+        ConfigRepository<CampaignConf> repository = new JsonConfigRepository<>("config/config.json", CampaignConf.class, new ObjectMapper());
         ZeroparkAPI zeroparkAPI = new ZeroparkAPIProvider().get();
 
         return new CompaignConfigManager(repository, zeroparkAPI);

@@ -1,5 +1,6 @@
 package com.yura.optimization;
 
+import com.yura.logging.Logger;
 import com.yura.optimization.predicates.TargetActive;
 import com.yura.optimization.predicates.ZeroPayout;
 import com.yura.zeropark.ZeroparkAPI;
@@ -22,6 +23,8 @@ class DisableWithZeroPayout implements TargetOperation {
 
         if (!predicate.test(context))
             return;
+
+        Logger.LOGGER.log("the case is recognized as "+getClass().getSimpleName());
 
         if (context.getTarget().getStats().getRedirects() > context.getConf().getMaxRedirects() )
             zeroparkAPI.pauseTarget(context.getConf().getCampaignId(), context.getTarget().getId());

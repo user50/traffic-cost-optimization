@@ -28,6 +28,8 @@ class OptimizeTopPosition implements TargetOperation {
         if (!predicate.test(context))
             return;
 
+        Logger.LOGGER.log("the case is recognized as "+getClass().getSimpleName());
+
         double ourBid = context.getTarget().getBid().getValue();
         double topBid = context.getTarget().getBidPosition().getTopBid();
 
