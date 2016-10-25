@@ -19,7 +19,7 @@ public class OptimizationScheduler {
         this.service = service;
     }
 
-    @Scheduled(cron = "0 0/15 * * * ?")
+    @Scheduled(cron = "0 0/1 * * * ?")
     public void execute(){
         manager.get().forEach(service::optimize);
     }
