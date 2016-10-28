@@ -1,7 +1,6 @@
 package com.yura.optimization;
 
 import com.yura.CampaignConf;
-import com.yura.zeropark.model.Campaign;
 import com.yura.zeropark.model.Target;
 
 public class OptimizationContext {

@@ -6,7 +6,7 @@ import com.yura.zeropark.model.Target;
 
 import java.util.List;
 
-import static com.yura.logging.Logger.*;
+import static com.yura.logging.Logger.LOGGER;
 
 class ZeroparkApiLogging implements ZeroparkAPI {
 

@@ -1,8 +1,8 @@
 package com.yura.optimization;
 
 import com.yura.CampaignConf;
-import com.yura.zeropark.model.Intervals;
 import com.yura.zeropark.ZeroparkAPI;
+import com.yura.zeropark.model.Intervals;
 import com.yura.zeropark.model.Target;
 
 import java.util.List;

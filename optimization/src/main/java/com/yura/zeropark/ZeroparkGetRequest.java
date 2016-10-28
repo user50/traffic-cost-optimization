@@ -2,7 +2,6 @@ package com.yura.zeropark;
 
 import org.apache.http.Header;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.client.utils.URIBuilder;
 

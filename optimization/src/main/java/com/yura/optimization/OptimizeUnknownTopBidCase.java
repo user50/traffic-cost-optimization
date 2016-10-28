@@ -2,7 +2,6 @@ package com.yura.optimization;
 
 import com.yura.logging.Logger;
 import com.yura.optimization.predicates.TargetActive;
-import com.yura.optimization.predicates.TopPositionIsPossible;
 import com.yura.optimization.predicates.UnknownTopBid;
 import com.yura.optimization.predicates.ZeroPayout;
 import com.yura.zeropark.ZeroparkAPI;

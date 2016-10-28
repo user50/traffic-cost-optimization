@@ -1,6 +1,5 @@
 package com.yura.zeropark;
 
-import com.yura.zeropark.ZeroparkHttpsRequest;
 import org.apache.http.Header;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;

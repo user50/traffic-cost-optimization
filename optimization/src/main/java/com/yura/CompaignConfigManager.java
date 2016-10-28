@@ -1,9 +1,9 @@
 package com.yura;
 
 import com.yura.repository.ConfigRepository;
-import com.yura.zeropark.model.Intervals;
 import com.yura.zeropark.ZeroparkAPI;
 import com.yura.zeropark.model.Campaign;
+import com.yura.zeropark.model.Intervals;
 
 import java.util.List;
 import java.util.Set;
