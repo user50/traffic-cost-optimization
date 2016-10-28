@@ -12,7 +12,7 @@ class ZeroparkApiLogging implements ZeroparkAPI {
 
     private ZeroparkAPI zeroparkApi;
 
-    public ZeroparkApiLogging(ZeroparkAPI zeroparkApi) {
+    ZeroparkApiLogging(ZeroparkAPI zeroparkApi) {
         this.zeroparkApi = zeroparkApi;
     }
 
@@ -54,6 +54,12 @@ class ZeroparkApiLogging implements ZeroparkAPI {
     public void setCampaignBid(String campaignId, double bid) {
         LOGGER.log("setCampaignBid for campaignId " + campaignId + ", bid " + bid);
         zeroparkApi.setCampaignBid(campaignId, bid);
+    }
+
+    @Override
+    public void setAutoBid(String campaignId, String target) {
+        zeroparkApi.setAutoBid(campaignId, target);
+        LOGGER.log("setAutoBid for campaignId " + campaignId + ", target " + target);
     }
 
 

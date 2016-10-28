@@ -3,6 +3,7 @@ package com.yura.optimization;
 import com.yura.logging.Logger;
 import com.yura.optimization.predicates.TargetActive;
 import com.yura.optimization.predicates.TopPositionIsPossible;
+import com.yura.optimization.predicates.UnknownTopBid;
 import com.yura.optimization.predicates.ZeroPayout;
 import com.yura.zeropark.ZeroparkAPI;
 
@@ -23,7 +24,9 @@ class OptimizeTopPosition implements TargetOperation {
         Predicate<OptimizationContext> active = new TargetActive();
         Predicate<OptimizationContext> zeroPayout = new ZeroPayout();
         Predicate<OptimizationContext> possibleTopPosition = new TopPositionIsPossible();
-        Predicate<OptimizationContext> predicate = active.and(zeroPayout.negate()).and(possibleTopPosition);
+        Predicate<OptimizationContext> unknownTopBid = new UnknownTopBid();
+
+        Predicate<OptimizationContext> predicate = active.and(zeroPayout.negate()).and(unknownTopBid.negate()).and(possibleTopPosition);
 
         if (!predicate.test(context))
             return;

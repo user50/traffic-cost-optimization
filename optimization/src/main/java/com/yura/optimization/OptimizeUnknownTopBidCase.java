@@ -10,11 +10,11 @@ import com.yura.zeropark.model.TargetStats;
 
 import java.util.function.Predicate;
 
-public class OptimizeUnknownTopBidCase implements TargetOperation {
+class OptimizeUnknownTopBidCase implements TargetOperation {
 
     private ZeroparkAPI zeroparkAPI;
 
-    public OptimizeUnknownTopBidCase(ZeroparkAPI zeroparkAPI) {
+    OptimizeUnknownTopBidCase(ZeroparkAPI zeroparkAPI) {
         this.zeroparkAPI = zeroparkAPI;
     }
 

@@ -20,4 +20,6 @@ public interface ZeroparkAPI {
 
     void setCampaignBid(String campaignId, double bid);
 
+    void setAutoBid(String campaignId, String target);
+
 }

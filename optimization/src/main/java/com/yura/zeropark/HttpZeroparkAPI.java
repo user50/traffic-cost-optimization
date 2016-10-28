@@ -104,7 +104,19 @@ class HttpZeroparkAPI implements ZeroparkAPI {
 
     }
 
+    @Override
+    public void setAutoBid(String campaignId, String target) {
+        URIBuilder builder = new URIBuilder();
+        builder.setPath("/api/campaign/"+campaignId+"/target/autobid")
+                .setParameter("campaignId", campaignId)
+                .setParameter("hash", target);
 
+        try {
+            httpService.execute(new ZeroparkPostRequest(builder, cookies), resp -> null);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
 }

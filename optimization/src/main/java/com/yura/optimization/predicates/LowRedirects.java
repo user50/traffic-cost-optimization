@@ -4,9 +4,9 @@ import com.yura.optimization.OptimizationContext;
 
 import java.util.function.Predicate;
 
-public class UnknownTopBid implements Predicate<OptimizationContext> {
+public class LowRedirects implements Predicate<OptimizationContext> {
     @Override
     public boolean test(OptimizationContext context) {
-        return context.getTarget().getBidPosition().getTopBid() == 0;
+        return context.getTarget().getStats().getRedirects() < context.getConf().getMaxRedirects();
     }
 }
