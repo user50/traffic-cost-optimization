@@ -22,4 +22,6 @@ public interface ZeroparkAPI {
 
     void setAutoBid(String campaignId, String target);
 
+    void  deleteTarget(String campaignId, String target);
+
 }

@@ -37,7 +37,8 @@ class HttpZeroparkAPI implements ZeroparkAPI {
     {
         URIBuilder builder = new URIBuilder();
         builder.setPath("/api/stats/campaign/" + campaignId +"/targets")
-                .setParameter("interval", interval);
+                .setParameter("interval", interval)
+                .setParameter("limit", "10000");
 
         try {
             return httpService.execute(new ZeroparkGetRequest(builder, cookies), new TargetsResponseHandler());
@@ -108,6 +109,22 @@ class HttpZeroparkAPI implements ZeroparkAPI {
     public void setAutoBid(String campaignId, String target) {
         URIBuilder builder = new URIBuilder();
         builder.setPath("/api/campaign/"+campaignId+"/target/autobid")
+                .setParameter("campaignId", campaignId)
+                .setParameter("hash", target);
+
+        try {
+            httpService.execute(new ZeroparkPostRequest(builder, cookies), resp -> null);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void deleteTarget(String campaignId, String target) {
+
+
+        URIBuilder builder = new URIBuilder();
+        builder.setPath("/api/campaign/"+campaignId+"/targets/delete")
                 .setParameter("campaignId", campaignId)
                 .setParameter("hash", target);
 

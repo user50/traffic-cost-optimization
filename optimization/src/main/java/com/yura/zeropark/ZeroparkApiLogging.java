@@ -62,5 +62,11 @@ class ZeroparkApiLogging implements ZeroparkAPI {
         LOGGER.log("setAutoBid for campaignId " + campaignId + ", target " + target);
     }
 
+    @Override
+    public void deleteTarget(String campaignId, String target) {
+        zeroparkApi.deleteTarget(campaignId, target);
+        LOGGER.log("deleteTarget for campaignId " + campaignId + ", target " + target);
+    }
+
 
 }
