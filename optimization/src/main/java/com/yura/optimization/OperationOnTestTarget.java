@@ -20,7 +20,7 @@ class OperationOnTestTarget implements TargetOperation {
             zeroparkAPI.pauseTarget(context.getConf().getTestCampaignId(), target.getTarget());
 
         if (target.getStats().getPayout() > 0 ) {
-            zeroparkAPI.pauseTarget(context.getConf().getTestCampaignId(), target.getTarget());
+            zeroparkAPI.deleteTarget(context.getConf().getTestCampaignId(), target.getTarget());
             zeroparkAPI.addTarget2Campaign(context.getConf().getCampaignId(), target.getTarget());
         }
 

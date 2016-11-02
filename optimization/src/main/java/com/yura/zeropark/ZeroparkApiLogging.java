@@ -6,7 +6,7 @@ import com.yura.zeropark.model.Target;
 
 import java.util.List;
 
-import static com.yura.logging.Logger.*;
+import static com.yura.logging.Logger.LOGGER;
 
 class ZeroparkApiLogging implements ZeroparkAPI {
 
@@ -60,6 +60,12 @@ class ZeroparkApiLogging implements ZeroparkAPI {
     public void setAutoBid(String campaignId, String target) {
         zeroparkApi.setAutoBid(campaignId, target);
         LOGGER.log("setAutoBid for campaignId " + campaignId + ", target " + target);
+    }
+
+    @Override
+    public void deleteTarget(String campaignId, String target) {
+        zeroparkApi.deleteTarget(campaignId, target);
+        LOGGER.log("deleteTarget for campaignId " + campaignId + ", target " + target);
     }
 
 

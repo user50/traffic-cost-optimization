@@ -6,7 +6,6 @@ import com.jayway.jsonpath.TypeRef;
 import com.jayway.jsonpath.spi.json.JacksonJsonProvider;
 import com.jayway.jsonpath.spi.mapper.JacksonMappingProvider;
 import com.yura.http.HttpResponseHandler;
-import com.yura.zeropark.model.Campaign;
 import com.yura.zeropark.model.Target;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.util.EntityUtils;

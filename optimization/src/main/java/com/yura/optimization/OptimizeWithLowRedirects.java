@@ -1,6 +1,8 @@
 package com.yura.optimization;
 
-import com.yura.optimization.predicates.*;
+import com.yura.optimization.predicates.LowRedirects;
+import com.yura.optimization.predicates.TargetActive;
+import com.yura.optimization.predicates.ZeroPayout;
 import com.yura.zeropark.ZeroparkAPI;
 
 import java.util.function.Predicate;

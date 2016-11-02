@@ -39,7 +39,8 @@ class HttpZeroparkAPI implements ZeroparkAPI {
     {
         URIBuilder builder = new URIBuilder();
         builder.setPath("/api/stats/campaign/" + campaignId +"/targets")
-                .setParameter("interval", interval);
+                .setParameter("interval", interval)
+                .setParameter("limit", "10000");
 
         try {
             HttpGet post = new HttpGet(builder.build());
@@ -128,6 +129,22 @@ class HttpZeroparkAPI implements ZeroparkAPI {
 
             httpService.execute(() -> post, resp -> null);
         } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void deleteTarget(String campaignId, String target) {
+
+
+        URIBuilder builder = new URIBuilder();
+        builder.setPath("/api/campaign/"+campaignId+"/targets/delete")
+                .setParameter("campaignId", campaignId)
+                .setParameter("hash", target);
+
+        try {
+            httpService.execute(new ZeroparkPostRequest(builder, cookies), resp -> null);
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }

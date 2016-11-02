@@ -1,13 +1,9 @@
 package com.yura.optimization;
 
-import com.yura.optimization.predicates.TargetActive;
-import com.yura.optimization.predicates.TopPositionIsPossible;
-import com.yura.optimization.predicates.ZeroPayout;
-import com.yura.zeropark.ZeroparkAPIProvider;
 import com.yura.zeropark.ZeroparkAPI;
+import com.yura.zeropark.ZeroparkAPIProvider;
 
 import java.util.function.Consumer;
-import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 public class TargetOptimizationServiceProvider implements Supplier<TargetOptimizationService>{
