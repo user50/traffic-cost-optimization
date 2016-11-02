@@ -5,30 +5,32 @@ import com.yura.zeropark.model.Campaign;
 import com.yura.zeropark.model.SetTargetBidResponse;
 import com.yura.zeropark.model.Target;
 import org.apache.http.Header;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
 
 class HttpZeroparkAPI implements ZeroparkAPI {
 
-    private Header[] cookies;
-    private HttpService httpService;
+    private ZeroparkHttpService httpService;
 
-    HttpZeroparkAPI(Header[] cookies, HttpService httpService) {
-        this.cookies = cookies;
+    HttpZeroparkAPI(ZeroparkHttpService httpService) {
         this.httpService = httpService;
     }
 
     public List<Campaign> getCampaigns(String interval){
-
         URIBuilder builder = new URIBuilder();
         builder.setPath("/api/stats/campaign/all")
                 .setParameter("interval", interval);
 
         try {
-            return httpService.execute(new ZeroparkGetRequest(builder, cookies), new CompaniesExtractor());
-        } catch (IOException e) {
+            HttpGet post = new HttpGet(builder.build());
+
+            return httpService.execute(() -> post, new CompaniesExtractor());
+        } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
     }
@@ -40,8 +42,10 @@ class HttpZeroparkAPI implements ZeroparkAPI {
                 .setParameter("interval", interval);
 
         try {
-            return httpService.execute(new ZeroparkGetRequest(builder, cookies), new TargetsResponseHandler());
-        } catch (IOException e) {
+            HttpGet post = new HttpGet(builder.build());
+
+            return httpService.execute(() -> post, new TargetsResponseHandler());
+        } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
     }
@@ -55,8 +59,10 @@ class HttpZeroparkAPI implements ZeroparkAPI {
                 .setParameter("bid", String.valueOf(bid));
 
         try {
-            return httpService.execute(new ZeroparkPostRequest(builder, cookies), new SetTargetsBidResponseHandler());
-        } catch (IOException e) {
+            HttpPost post = new HttpPost(builder.build());
+
+            return httpService.execute(() -> post, new SetTargetsBidResponseHandler());
+        } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
     }
@@ -69,8 +75,10 @@ class HttpZeroparkAPI implements ZeroparkAPI {
                 .setParameter("hash", targetHash);
 
         try {
-            httpService.execute(new ZeroparkPostRequest(builder, cookies), resp -> null);
-        } catch (IOException e) {
+            HttpPost post = new HttpPost(builder.build());
+
+            httpService.execute(() -> post, resp -> null);
+        } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
     }
@@ -83,8 +91,10 @@ class HttpZeroparkAPI implements ZeroparkAPI {
                 .setParameter("hash", target);
 
         try {
-            httpService.execute(new ZeroparkPostRequest(builder, cookies), resp -> null);
-        } catch (IOException e) {
+            HttpPost post = new HttpPost(builder.build());
+
+            httpService.execute(() -> post, resp -> null);
+        } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
     }
@@ -97,8 +107,10 @@ class HttpZeroparkAPI implements ZeroparkAPI {
                 .setParameter("bid", String.valueOf(bid));
 
         try {
-            httpService.execute(new ZeroparkPostRequest(builder, cookies), resp -> null);
-        } catch (IOException e) {
+            HttpPost post = new HttpPost(builder.build());
+
+            httpService.execute(() -> post, resp -> null);
+        } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
 
@@ -112,8 +124,10 @@ class HttpZeroparkAPI implements ZeroparkAPI {
                 .setParameter("hash", target);
 
         try {
-            httpService.execute(new ZeroparkPostRequest(builder, cookies), resp -> null);
-        } catch (IOException e) {
+            HttpPost post = new HttpPost(builder.build());
+
+            httpService.execute(() -> post, resp -> null);
+        } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
     }

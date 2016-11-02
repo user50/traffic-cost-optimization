@@ -5,13 +5,14 @@ import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.impl.client.CloseableHttpClient;
 
 import java.io.IOException;
+import java.util.function.Consumer;
 
 /**
  * Created by user50 on 26.05.2015.
  */
 public class HttpService {
 
-    CloseableHttpClient httpClient;
+    private CloseableHttpClient httpClient;
 
     public HttpService(CloseableHttpClient httpClient) {
         this.httpClient = httpClient;

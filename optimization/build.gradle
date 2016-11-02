@@ -6,7 +6,7 @@ repositories {
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-version =  '0.0.1'
+version =  '0.0.3'
 
 dependencies {
     compile "org.apache.httpcomponents:httpclient:4.3.1"

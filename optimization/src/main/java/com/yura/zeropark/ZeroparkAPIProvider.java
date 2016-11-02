@@ -19,7 +19,7 @@ public class ZeroparkAPIProvider {
             try {
                 Header[] cookies = httpService.execute(new SignInRequest(), new CookieExtractor());
 
-                INSTANCE = new ZeroparkApiLogging(new HttpZeroparkAPI(cookies, httpService));
+                INSTANCE = new ZeroparkApiLogging(new HttpZeroparkAPI(new ZeroparkHttpService(httpService, cookies)));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
