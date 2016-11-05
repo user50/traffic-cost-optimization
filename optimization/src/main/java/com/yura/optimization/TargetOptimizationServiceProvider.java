@@ -1,5 +1,8 @@
 package com.yura.optimization;
 
+import com.yura.CampaignConf;
+import com.yura.ConfigRepositoryProvider;
+import com.yura.repository.ConfigRepository;
 import com.yura.zeropark.ZeroparkAPI;
 import com.yura.zeropark.ZeroparkAPIProvider;
 
@@ -7,6 +10,12 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class TargetOptimizationServiceProvider implements Supplier<TargetOptimizationService>{
+
+    private ConfigRepository<CampaignConf> repository;
+
+    public TargetOptimizationServiceProvider(ConfigRepository<CampaignConf> repository) {
+        this.repository = repository;
+    }
 
     @Override
     public TargetOptimizationService get() {
@@ -28,6 +37,6 @@ public class TargetOptimizationServiceProvider implements Supplier<TargetOptimiz
 
         TargetOperation operationOnTestTarget = new OperationOnTestTarget(zeroparkAPI);
 
-        return new TargetOptimizationService(zeroparkAPI, optimizationStrategy::accept, operationOnTestTarget);
+        return new TargetOptimizationService(zeroparkAPI, optimizationStrategy::accept, operationOnTestTarget, repository);
     }
 }

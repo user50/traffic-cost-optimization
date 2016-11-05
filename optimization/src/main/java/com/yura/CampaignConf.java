@@ -14,6 +14,7 @@ public class CampaignConf implements Config {
     private String testCampaignId;
     private String testCampaignName;
     private int maxTestRedirect;
+    private long lastOptimization;
 
     public CampaignConf() {
     }
@@ -92,6 +93,14 @@ public class CampaignConf implements Config {
 
     public void setTestCampaignName(String testCampaignName) {
         this.testCampaignName = testCampaignName;
+    }
+
+    public long getLastOptimization() {
+        return lastOptimization;
+    }
+
+    public void setLastOptimization(long lastOptimization) {
+        this.lastOptimization = lastOptimization;
     }
 
     @Override

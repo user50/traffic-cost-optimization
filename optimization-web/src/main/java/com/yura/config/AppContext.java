@@ -35,7 +35,7 @@ public class AppContext {
         return new CompaignConfigManager(repository, new ZeroparkAPIProvider().get());
     }
     @Bean
-    public OptimizationScheduler optimizationSchedule(CompaignConfigManager configManager){
-        return new OptimizationScheduler(configManager, new TargetOptimizationServiceProvider().get());
+    public OptimizationScheduler optimizationSchedule(CompaignConfigManager configManager, ConfigRepository<CampaignConf> configRepository){
+        return new OptimizationScheduler(configManager, new TargetOptimizationServiceProvider(configRepository).get());
     }
 }
