@@ -143,8 +143,10 @@ class HttpZeroparkAPI implements ZeroparkAPI {
                 .setParameter("hash", target);
 
         try {
-            httpService.execute(new ZeroparkPostRequest(builder, cookies), resp -> null);
-        } catch (IOException e) {
+            HttpPost post = new HttpPost(builder.build());
+
+            httpService.execute(() -> post, resp -> null);
+        } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
     }

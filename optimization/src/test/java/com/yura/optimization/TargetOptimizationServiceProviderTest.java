@@ -66,6 +66,11 @@ public class TargetOptimizationServiceProviderTest {
         }
     }
 
+    @Test
+    public void otherTest() throws Exception {
+        ZeroparkAPI api = new ZeroparkAPIProvider().get();
 
+        List<Target> targets = api.getTargets("6f4b4380-5b7a-11e6-ae96-0e6b810b9917", Intervals.LAST_7_DAYS.name());
 
+    }
 }
