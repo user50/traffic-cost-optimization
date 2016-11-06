@@ -35,8 +35,9 @@ public class TargetOptimizationServiceProvider implements Supplier<TargetOptimiz
                                                             .andThen(withLowRedirects)
                                                             .andThen(unknownTopBidCase);
 
-        TargetOperation operationOnTestTarget = new OperationOnTestTarget(zeroparkAPI);
+        TargetOperation operationOnTestTarget = new LoggingNot200OKTargetOperation(new OperationOnTestTarget(zeroparkAPI));
+        TargetOperation strategy = new LoggingNot200OKTargetOperation(optimizationStrategy::accept);
 
-        return new TargetOptimizationService(zeroparkAPI, optimizationStrategy::accept, operationOnTestTarget, repository);
+        return new TargetOptimizationService(zeroparkAPI, strategy, operationOnTestTarget, repository);
     }
 }

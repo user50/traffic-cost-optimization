@@ -27,6 +27,6 @@ class DisableWithZeroPayout implements TargetOperation {
         Logger.LOGGER.log("the case is recognized as "+getClass().getSimpleName());
 
         if (context.getTarget().getStats().getRedirects() > context.getConf().getMaxRedirects() )
-            zeroparkAPI.pauseTarget(context.getConf().getCampaignId(), context.getTarget().getId());
+            zeroparkAPI.pauseTarget(context.getConf().getCampaignId(), context.getTarget().getTarget());
     }
 }
