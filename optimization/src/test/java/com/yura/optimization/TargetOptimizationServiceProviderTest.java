@@ -1,6 +1,7 @@
 package com.yura.optimization;
 
 import com.yura.CampaignConf;
+import com.yura.ConfigRepositoryProvider;
 import com.yura.zeropark.ZeroparkAPI;
 import com.yura.zeropark.ZeroparkAPIProvider;
 import com.yura.zeropark.model.Campaign;
@@ -14,7 +15,7 @@ import java.util.stream.Collectors;
 public class TargetOptimizationServiceProviderTest {
     @Test
     public void get() throws Exception {
-        TargetOptimizationService service = new TargetOptimizationServiceProvider().get();
+        TargetOptimizationService service = new TargetOptimizationServiceProvider(new ConfigRepositoryProvider().get()).get();
 
         CampaignConf conf = new CampaignConf();
         conf.setAutoOptimization(true);

@@ -38,8 +38,7 @@ class OptimizeTopPosition implements TargetOperation {
 
         Logger.LOGGER.log("the current position for target "+context.getTarget().getTarget()+" is 1");
 
-        if (ourBid - topBid > minBidChange  )
-            zeroparkAPI.setTargetBid(context.getConf().getCampaignId(), context.getTarget().getTarget(), topBid + minBidChange);
+        zeroparkAPI.setTargetBid(context.getConf().getCampaignId(), context.getTarget().getTarget(), topBid + minBidChange);
 
     }
 }
