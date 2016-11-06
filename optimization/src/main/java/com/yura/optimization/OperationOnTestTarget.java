@@ -4,6 +4,8 @@ import com.yura.logging.Logger;
 import com.yura.zeropark.ZeroparkAPI;
 import com.yura.zeropark.model.Target;
 
+import java.util.Date;
+
 class OperationOnTestTarget implements TargetOperation {
 
     private ZeroparkAPI zeroparkAPI;
@@ -17,7 +19,7 @@ class OperationOnTestTarget implements TargetOperation {
         Target target = context.getTarget();
         int maxRedirects = context.getConf().getMaxRedirects();
 
-        Logger.LOGGER.log("target: "+target.getTarget()+" payout: "+target.getStats().getPayout());
+        Logger.LOGGER.log(new Date() + ": target: "+target.getTarget()+" payout: "+target.getStats().getPayout());
 
         if (target.getStats().getPayout() == 0 &&target.getStats().getRedirects() > maxRedirects)
             zeroparkAPI.pauseTarget(context.getConf().getTestCampaignId(), target.getTarget());
