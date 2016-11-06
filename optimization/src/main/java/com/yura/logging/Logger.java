@@ -16,6 +16,7 @@ public enum  Logger {
             printWriter.println(message);
 
             printWriter.flush();
+            printWriter.close();
         } catch (IOException e) {
             java.util.logging.Logger.getAnonymousLogger().info(e.getMessage());
         }
