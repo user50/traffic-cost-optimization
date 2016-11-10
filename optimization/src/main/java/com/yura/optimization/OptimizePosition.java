@@ -35,7 +35,7 @@ class OptimizePosition implements TargetOperation {
         if (!predicate.test(context))
             return;
 
-        Logger.LOGGER.log("the case is recognized as "+getClass().getSimpleName());
+        Logger.LOGGER.info("the case is recognized as "+getClass().getSimpleName());
 
         TargetStats stats = context.getTarget().getStats();
 
@@ -50,7 +50,7 @@ class OptimizePosition implements TargetOperation {
         zeroparkAPI.setTargetBid(campaignId, targetHash, maxBid).getBidPosition();
         String maxPosition = getTargetPosition(campaignId, targetHash);
 
-        Logger.LOGGER.log(" maximal position for target "+context.getTarget().getTarget()+" is "+maxPosition+"; maximal bid "+maxBid);
+        Logger.LOGGER.info(" maximal position for target "+context.getTarget().getTarget()+" is "+maxPosition+"; maximal bid "+maxBid);
 
         if (maxPosition.equals("<5"))
             return;

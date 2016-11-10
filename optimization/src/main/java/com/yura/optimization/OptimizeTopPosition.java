@@ -31,12 +31,12 @@ class OptimizeTopPosition implements TargetOperation {
         if (!predicate.test(context))
             return;
 
-        Logger.LOGGER.log("the case is recognized as "+getClass().getSimpleName());
+        Logger.LOGGER.info("the case is recognized as "+getClass().getSimpleName());
 
         double ourBid = context.getTarget().getBid().getValue();
         double topBid = context.getTarget().getBidPosition().getTopBid();
 
-        Logger.LOGGER.log("the current position for target "+context.getTarget().getTarget()+" is 1");
+        Logger.LOGGER.info("the current position for target "+context.getTarget().getTarget()+" is 1");
 
         zeroparkAPI.setTargetBid(context.getConf().getCampaignId(), context.getTarget().getTarget(), topBid + minBidChange);
 

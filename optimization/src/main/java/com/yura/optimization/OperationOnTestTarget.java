@@ -19,7 +19,7 @@ class OperationOnTestTarget implements TargetOperation {
         Target target = context.getTarget();
         int maxRedirects = context.getConf().getMaxRedirects();
 
-        Logger.LOGGER.log(new Date() + ": target: "+target.getTarget()+" payout: "+target.getStats().getPayout());
+        Logger.LOGGER.info(new Date() + ": target: "+target.getTarget()+" payout: "+target.getStats().getPayout());
 
         if (target.getStats().getPayout() == 0 &&target.getStats().getRedirects() > maxRedirects)
             zeroparkAPI.pauseTarget(context.getConf().getTestCampaignId(), target.getTarget());
