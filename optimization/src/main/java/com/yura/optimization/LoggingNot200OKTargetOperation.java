@@ -18,7 +18,7 @@ class LoggingNot200OKTargetOperation implements TargetOperation {
     public void accept(OptimizationContext optimizationContext) {
         try {
             targetOperation.accept(optimizationContext);
-        } catch (Not200OkException e) {
+        } catch (RuntimeException e) {
             Logger.LOGGER.error("Not 200 exception during Target Operation: " + e.getMessage());
         }
     }
