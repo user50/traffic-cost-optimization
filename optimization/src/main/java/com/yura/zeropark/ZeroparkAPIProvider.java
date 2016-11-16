@@ -23,7 +23,7 @@ public class ZeroparkAPIProvider {
             try {
                 Properties conf = getCredentials();
                 String user = conf.getProperty("user");
-                String psw = conf.getProperty("psw");
+                String psw = conf.getProperty("password");
 
                 Header[] cookies = httpService.execute(new SignInRequest(user, psw), new CookieExtractor());
 
