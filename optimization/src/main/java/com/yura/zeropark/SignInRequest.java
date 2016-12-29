@@ -9,12 +9,21 @@ import org.apache.http.client.utils.URIBuilder;
 import java.net.URISyntaxException;
 
 class SignInRequest implements HttpRequestProvider {
+
+    private String user;
+    private String psw;
+
+    public SignInRequest(String user, String psw) {
+        this.user = user;
+        this.psw = psw;
+    }
+
     @Override
     public HttpRequestBase getRequest() {
         URIBuilder builder = new URIBuilder();
         builder.setPath("/api/signin")
-                .setParameter("email", "shariki-za-roliki@yandex.ru")
-                .setParameter("password", "KjEUP9VewD");
+                .setParameter("email", user)
+                .setParameter("password", psw);
 
         try {
             return new HttpPost(builder.build());

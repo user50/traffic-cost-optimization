@@ -6,11 +6,11 @@ import com.yura.logging.Logger;
 /**
  * @author Yevhen
  */
-public class LoggingNot200OKTargetOperation implements TargetOperation {
+class LoggingNot200OKTargetOperation implements TargetOperation {
 
     private TargetOperation targetOperation;
 
-    public LoggingNot200OKTargetOperation(TargetOperation targetOperation) {
+    LoggingNot200OKTargetOperation(TargetOperation targetOperation) {
         this.targetOperation = targetOperation;
     }
 
@@ -18,8 +18,8 @@ public class LoggingNot200OKTargetOperation implements TargetOperation {
     public void accept(OptimizationContext optimizationContext) {
         try {
             targetOperation.accept(optimizationContext);
-        } catch (Not200OkException e) {
-            Logger.LOGGER.log("Not 200 exception during Target Operation: " + e.getMessage());
+        } catch (RuntimeException e) {
+            Logger.LOGGER.error("Not 200 exception during Target Operation: " + e.getMessage());
         }
     }
 }

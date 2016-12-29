@@ -28,7 +28,7 @@ class OptimizeUnknownTopBidCase implements TargetOperation {
         if (!predicate.test(context))
             return;
 
-        Logger.LOGGER.log("the case is recognized as "+getClass().getSimpleName());
+        Logger.LOGGER.info("the case is recognized as "+getClass().getSimpleName());
 
         TargetStats stats = context.getTarget().getStats();
 

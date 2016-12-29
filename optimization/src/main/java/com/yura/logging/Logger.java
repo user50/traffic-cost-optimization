@@ -7,11 +7,19 @@ import java.io.PrintWriter;
 public enum  Logger {
     LOGGER;
 
+    public void info(String message){
+//        log(message);
+    }
 
-    public void log(String message){
+    public void error(String message)
+    {
+        log(message);
+    }
 
+    private void log(String message)
+    {
         try {
-            PrintWriter printWriter = new PrintWriter(new FileWriter("log.txt", true ));
+            PrintWriter printWriter = new PrintWriter(new FileWriter("info.txt", true ));
 
             printWriter.println(message);
 
