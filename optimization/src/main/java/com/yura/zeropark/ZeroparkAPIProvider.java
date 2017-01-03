@@ -21,19 +21,14 @@ public class ZeroparkAPIProvider {
         if (INSTANCE == null) {
             HttpService httpService = new HttpService(HttpClients.createDefault());
 
-            try {
-                Properties conf = getCredentials();
-                String user = conf.getProperty("user");
-                String psw = conf.getProperty("password");
+            Properties conf = getCredentials();
+            String user = conf.getProperty("user");
+            String psw = conf.getProperty("password");
 
-                Header[] cookies = httpService.execute(new SignInRequest(user, psw), new CookieExtractor());
+            Supplier<Header[]> cookieSupplier = new CookiesCache(1000 * 60 * 10, new CookiesSupplier(httpService, user, psw));
 
-                Supplier<Header[]> cookieSupplier = new CookiesCache(1000 * 60 * 10, new CookiesSupplier(httpService, user, psw));
+            INSTANCE = new ZeroparkApiLogging(new HttpZeroparkAPI(new ZeroparkHttpService(httpService, cookieSupplier)));
 
-                INSTANCE = new ZeroparkApiLogging(new HttpZeroparkAPI(new ZeroparkHttpService(httpService, cookieSupplier)));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
         }
 
         return INSTANCE;
