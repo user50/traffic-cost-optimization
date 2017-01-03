@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.function.Supplier;
 
 public class ZeroparkAPIProvider {
 
@@ -27,7 +28,9 @@ public class ZeroparkAPIProvider {
 
                 Header[] cookies = httpService.execute(new SignInRequest(user, psw), new CookieExtractor());
 
-                INSTANCE = new ZeroparkApiLogging(new HttpZeroparkAPI(new ZeroparkHttpService(httpService, cookies)));
+                Supplier<Header[]> cookieSupplier = new CookiesCache(1000 * 60 * 10, new CookiesSupplier(httpService, user, psw));
+
+                INSTANCE = new ZeroparkApiLogging(new HttpZeroparkAPI(new ZeroparkHttpService(httpService, cookieSupplier)));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

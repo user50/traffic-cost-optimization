@@ -13,16 +13,16 @@ import java.util.function.Supplier;
 public class ZeroparkHttpService {
 
     private HttpService httpService;
-    private Header[] cookies;
+    private Supplier<Header[]> cookies;
 
-    public ZeroparkHttpService(HttpService httpService, Header[] cookies) {
+    public ZeroparkHttpService(HttpService httpService, Supplier<Header[]> cookies) {
         this.httpService = httpService;
         this.cookies = cookies;
     }
 
     public <T> T execute(Supplier<HttpRequestBase> requestSupplier, HttpResponseHandler<T> responseHandler)
     {
-        HttpRequestProvider requestProvider = new ZeroparkHttpsRequest(cookies, requestSupplier);
+        HttpRequestProvider requestProvider = new ZeroparkHttpsRequest(cookies.get(), requestSupplier);
 
         try {
             return httpService.execute(requestProvider, new SimpleHttpErrorHandler<T>(responseHandler));
