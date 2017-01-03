@@ -10,7 +10,7 @@ public class CookiesCache implements Supplier<Header[]> {
     private final long expiration;
 
     private Header[] cookie;
-    private long timeOfGetting = 0;
+    private long lastGettingTime = 0;
 
     public CookiesCache(long expiration, Supplier<Header[]> supplier) {
         this.expiration = expiration;
@@ -20,8 +20,10 @@ public class CookiesCache implements Supplier<Header[]> {
 
     @Override
     public Header[] get() {
-        if (System.currentTimeMillis() - timeOfGetting > expiration)
+        if (System.currentTimeMillis() - lastGettingTime > expiration) {
+            lastGettingTime = System.currentTimeMillis();
             cookie = supplier.get();
+        }
 
         return cookie;
     }
